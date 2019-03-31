@@ -23,6 +23,10 @@ class Sprite:
         self.gender = 0
         self.diverFemale = pygame.image.load("assets/Diver Female.png")
         self.diverMale = pygame.image.load("assets/Diver Male.png")
+        self.hellbender = pygame.image.load("assets/Hellbender.png")
+        self.hook = pygame.image.load("assets/Asset 5.png")
+        self.background = pygame.image.load("assets/background.png")
+        self.foreground = pygame.image.load("assets/foreground.png")
 
     def update(self):
         # Collision Detection
@@ -30,11 +34,17 @@ class Sprite:
         self.render()
 
     def render(self):
-        if self.gender == 0:
-            window.blit(pygame.transform.scale(self.diverFemale, (self.width, self.height)), (self.x, self.y))
+        if self.gender == 0:  # Female Diver
+            window.blit(self.background, (self.x, self.y))
+            # window.blit(pygame.transform.scale(self.hellbender, (426, 90)), (self.x, self.y))
+            # window.blit(pygame.transform.scale(self.hellbender, (426, 90)), (self.x, self.y))
+            # window.blit(self.hook, (self.x, self.y))
+            window.blit(pygame.transform.scale(self.diverFemale, (self.width, self.height)), (500, 500))
 
-        else:
-            window.blit(pygame.transform.scale(self.diverMale, (self.width, self.height)), (self.x, self.y))
+        else:  # Male Diver
+            window.blit(pygame.transform.scale(self.hellbender, (426, 90)), (600, 150))
+            window.blit(pygame.transform.scale(self.hellbender, (426, 90)), (750, 700))
+            window.blit(pygame.transform.scale(self.diverMale, (self.width, self.height)), (500, 500))
 
 
 player = Sprite(100, 150)
@@ -75,8 +85,6 @@ while gameLoop:
 
             if event.key == pygame.K_DOWN:
                 moveY = 0
-
-    window.fill(blue)
 
     player.x += moveX
 
