@@ -2,8 +2,8 @@ import pygame
 
 pygame.init()
 
-window = pygame.display.set_mode((1080, 720))
-pygame.display.set_caption("Window")
+window = pygame.display.set_mode((1440, 856))
+pygame.display.set_caption("Sprites Tester")
 
 black = (0, 0, 0)
 white = (255, 255, 255)
@@ -18,26 +18,23 @@ class Sprite:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.width = 50
-        self.height = 50
+        self.width = 480
+        self.height = 270
+        self.gender = 0
         self.diverFemale = pygame.image.load("assets/Diver Female.png")
         self.diverMale = pygame.image.load("assets/Diver Male.png")
-        self.gender = 0
-        self.bubbles = pygame.image.load("assets/bubbles.png")
 
     def update(self):
-        # collision
+        # Collision Detection
 
         self.render()
 
     def render(self):
         if self.gender == 0:
-            window.blit(self.diverFemale, (self.x, self.y))
-            window.blit(self.bubbles, (self.x + self.width, self.y + self.height))
+            window.blit(pygame.transform.scale(self.diverFemale, (self.width, self.height)), (self.x, self.y))
 
         else:
-            window.blit(self.diverMale, (self.x, self.y))
-            window.blit(self.bubbles, (self.x + self.width, self.y + self.height))
+            window.blit(pygame.transform.scale(self.diverMale, (self.width, self.height)), (self.x, self.y))
 
 
 player = Sprite(100, 150)
@@ -54,16 +51,16 @@ while gameLoop:
         if event.type == pygame.KEYDOWN:
 
             if event.key == pygame.K_LEFT:
-                moveX = -10
+                moveX = -25
 
             if event.key == pygame.K_RIGHT:
-                moveX = 10
+                moveX = 25
 
             if event.key == pygame.K_UP:
-                moveY = -10
+                moveY = -25
 
             if event.key == pygame.K_DOWN:
-                moveY = 10
+                moveY = 25
 
         if event.type == pygame.KEYUP:
 
